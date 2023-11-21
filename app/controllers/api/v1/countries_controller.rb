@@ -13,7 +13,7 @@ module Api
       # GET /countries/1
       # GET /countries/1.json
       def show
-        render json: @country
+        render json: @country, status: :ok
       end
 
       # POST /countries
@@ -22,8 +22,9 @@ module Api
         @country = Country.new(country_params)
 
         if @country.save
-          render :show, status: :created, location: api_v1_countries_url(@country)  # TODO: make sure to update to api_v1_URL(@model)
-
+          # Original Code, keeping it for reference
+          # render :show, status: :created, location: api_v1_countries_url(@country) # make sure to update to api_v1_URL(@model)
+          render json: @country, status: 200
         else
           render json: @country.errors, status: :unprocessable_entity
         end
@@ -33,7 +34,7 @@ module Api
       # PATCH/PUT /countries/1.json
       def update
         if @country.update(country_params)
-          render :show, status: :ok, location: api_v1_countries_url(@country)
+          render json: @country, status: 200
         else
           render json: @country.errors, status: :unprocessable_entity
         end
@@ -42,7 +43,12 @@ module Api
       # DELETE /countries/1
       # DELETE /countries/1.json
       def destroy
-        @country.destroy!
+        if @country
+          @country.destroy!
+          render json: { message: "Country successfully deleted" }, status: 200
+        else
+          render json: @country.errors, status: :unprocessable_entity
+        end
       end
 
       private

@@ -8,6 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# TODO: Uncomment on final deployment
+=begin
 Country.create([
                  { name_en: 'Afghanistan' },
                  { name_en: 'Albania' },
@@ -230,3 +232,7 @@ Country.create([
                  { name_en: 'Zambia' },
                  { name_en: 'Zimbabwe' }
                ])
+=end
+
+
+#
