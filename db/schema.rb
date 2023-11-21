@@ -10,13 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_21_083459) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_214311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
 
   create_table "countries", force: :cascade do |t|
     t.string "name_en"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "name"
+    t.string "email"
+    t.string "password"
+    t.string "password_confirmation"
+    t.date "dob"
+    t.string "phone"
+    t.string "street"
+    t.string "city"
+    t.string "province"
+    t.string "postal_code"
+    t.boolean "is_business", default: false
+    t.string "country"
+    t.string "website_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
