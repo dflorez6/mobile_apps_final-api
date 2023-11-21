@@ -22,7 +22,8 @@ module Api
         @country = Country.new(country_params)
 
         if @country.save
-          render :show, status: :created, location: @country
+          render :show, status: :created, location: api_v1_countries_url(@country)  # TODO: make sure to update to api_v1_URL(@model)
+
         else
           render json: @country.errors, status: :unprocessable_entity
         end
@@ -32,7 +33,7 @@ module Api
       # PATCH/PUT /countries/1.json
       def update
         if @country.update(country_params)
-          render :show, status: :ok, location: @country
+          render :show, status: :ok, location: api_v1_countries_url(@country)
         else
           render json: @country.errors, status: :unprocessable_entity
         end
