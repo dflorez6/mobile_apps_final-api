@@ -7,13 +7,13 @@ module Api
       # GET /countries.json
       def index
         @countries = Country.all
-        render json: @countries
+        render json: @countries, status: 200
       end
 
       # GET /countries/1
       # GET /countries/1.json
       def show
-        render json: @country, status: :ok
+        render json: @country, status: 200
       end
 
       # POST /countries
