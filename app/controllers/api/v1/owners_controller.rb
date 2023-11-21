@@ -43,7 +43,7 @@ module Api
       def destroy
         if @owner
           @owner.destroy!
-          render json: { message: "Country successfully deleted" }, status: 200
+          render json: { message: "#{@owner.name} successfully deleted" }, status: 200
         else
           render json: @owner.errors, status: :unprocessable_entity
         end
