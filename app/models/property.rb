@@ -29,3 +29,11 @@ end
 
 # t.st_point :geolocation, geographic: true
 # t.index :geolocation, using: :gist
+# migration
+# 20231122003652_add_geolocation_to_properties.rb
+# class AddGeolocationToProperties < ActiveRecord::Migration[7.1]
+#   def change
+#     add_column :properties, :geolocation, :st_point, srid: 4326, geographic: true
+#   end
+# end
+#
