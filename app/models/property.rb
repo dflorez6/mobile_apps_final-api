@@ -25,3 +25,7 @@ class Property < ApplicationRecord
     "#{self.street}, #{self.city}, #{self.postal_code}, #{self.province}, #{self.country}"
   end
 end
+
+
+# t.st_point :geolocation, geographic: true
+# t.index :geolocation, using: :gist
