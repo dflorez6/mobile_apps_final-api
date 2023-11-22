@@ -57,7 +57,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_22_003652) do
     t.bigint "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.geography "geolocation", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
     t.index ["owner_id"], name: "index_properties_on_owner_id"
     t.index ["rent_price"], name: "index_properties_on_rent_price"
