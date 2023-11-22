@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_22_011914) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_22_022159) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "applications", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.bigint "prospect_id", null: false
+    t.datetime "application_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_applications_on_property_id"
+    t.index ["prospect_id"], name: "index_applications_on_prospect_id"
+  end
 
   create_table "countries", force: :cascade do |t|
     t.string "name_en"
@@ -80,5 +90,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_22_011914) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "applications", "properties"
+  add_foreign_key "applications", "prospects"
   add_foreign_key "properties", "owners"
 end
