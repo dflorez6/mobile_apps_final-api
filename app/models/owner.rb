@@ -26,4 +26,9 @@ class Owner < ApplicationRecord
     end
   end
 
+  # Custom method to concatenate values to display full address
+  def full_address
+    "#{self.street}, #{self.city}, #{self.postal_code}, #{self.province}, #{self.country}"
+  end
+
 end

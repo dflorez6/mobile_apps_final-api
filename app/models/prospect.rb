@@ -1,4 +1,6 @@
-class Property < ApplicationRecord
+class Prospect < ApplicationRecord
+  before_create :set_full_name
+
   #====================
   # Validations
   #====================
@@ -8,10 +10,7 @@ class Property < ApplicationRecord
   #====================
   # Many-to-Many
   # has_many :applications
-  # has_many :prospects, through: :applications
-
-  # Belongs_to
-  belongs_to :owner
+  # has_many :properties, through: :applications
 
   #====================
   # Scopes
@@ -19,15 +18,15 @@ class Property < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   #====================
-  # Method
+  # Methods
   #====================
+  # Custom method that concatenates first_name + last_name in case the Owner is NOT a business
+  def set_full_name
+    self.name = "#{self.first_name} #{self.last_name}"
+  end
+
   # Custom method to concatenate values to display full address
   def full_address
     "#{self.street}, #{self.city}, #{self.postal_code}, #{self.province}, #{self.country}"
   end
-
 end
-
-# TODO: For migration that will use PostGIS, once deployment issue on render.com is fixed:
-# t.st_point :geolocation, geographic: true
-# t.index :geolocation, using: :gist
