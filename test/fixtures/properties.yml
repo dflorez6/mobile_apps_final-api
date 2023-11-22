@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  street: MyString
+  city: MyString
+  postal_code: MyString
+  province: MyString
+  country: MyString
+  latitude: 1.5
+  longitude: 1.5
+  is_apartment: false
+  building_name: MyString
+  tower_number: MyString
+  unit_number: MyString
+  rent_price: MyString
+  owner: one
+
+two:
+  street: MyString
+  city: MyString
+  postal_code: MyString
+  province: MyString
+  country: MyString
+  latitude: 1.5
+  longitude: 1.5
+  is_apartment: false
+  building_name: MyString
+  tower_number: MyString
+  unit_number: MyString
+  rent_price: MyString
+  owner: two
