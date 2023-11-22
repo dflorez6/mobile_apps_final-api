@@ -9,7 +9,7 @@ class Owner < ApplicationRecord
   # Associations
   #====================
   # Has-Many
-  # has_many :properties
+  has_many :properties
 
   #====================
   # Scopes
