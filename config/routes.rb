@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -12,17 +11,17 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     # v1
     namespace :v1 do
-      # resources :applications
+      resources :applications
       resources :countries
-      
+      resources :prospects
+
+      # Owners > Properties
       resources :owners do
         member do
           resources :properties
         end
       end
 
-      resources :prospects
-      # resources :properties
     end
 
     # API v2

@@ -7,8 +7,8 @@ class Property < ApplicationRecord
   # Associations
   #====================
   # Many-to-Many
-  # has_many :applications
-  # has_many :prospects, through: :applications
+  has_many :applications
+  has_many :prospects, through: :applications
 
   # Belongs_to
   belongs_to :owner

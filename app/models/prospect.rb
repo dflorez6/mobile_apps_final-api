@@ -9,8 +9,8 @@ class Prospect < ApplicationRecord
   # Associations
   #====================
   # Many-to-Many
-  # has_many :applications
-  # has_many :properties, through: :applications
+  has_many :applications
+  has_many :properties, through: :applications
 
   #====================
   # Scopes
