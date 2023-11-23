@@ -14,3 +14,14 @@
 #       methods: [:get, :post, :put, :patch, :delete, :options, :head]
 #   end
 # end
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    # TODO: Figure out later how to restrict it for the incoming traffic from an angular/cordova app
+    origins '*' # You can set specific origins if needed, e.g., 'http://localhost:3000'
+
+    resource '*',
+             headers: :any,
+             methods: [:get, :post, :put, :patch, :delete, :options, :head],
+             credentials: true
+  end
+end
