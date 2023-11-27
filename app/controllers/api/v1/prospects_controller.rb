@@ -57,7 +57,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def prospect_params
-        params.require(:prospect).permit(:first_name, :last_name, :name, :email, :password, :password_confirmation, :dob, :phone, :street, :city, :postal_code, :province, :country)
+        params.require(:prospect).permit(:first_name, :last_name, :name, :email, :password, :password_confirmation, :dob, :phone, :street, :city, :postal_code, :province, :country, :image)
       end
 
     end
