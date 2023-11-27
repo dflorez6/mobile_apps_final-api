@@ -12,6 +12,11 @@ class Owner < ApplicationRecord
   has_many :properties
 
   #====================
+  # Uploaders
+  #====================
+  mount_uploader :image, OwnerImageUploader
+
+  #====================
   # Scopes
   #====================
   default_scope { order(created_at: :desc) }
