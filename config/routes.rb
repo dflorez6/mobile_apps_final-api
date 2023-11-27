@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     # v1
     namespace :v1 do
-      resources :countries # TODO: only GET, restrict the other endpoints
+      resources :countries, only: [:index, :show] # Restricting routes
 
       resources :applications
       resources :prospects
