@@ -10,6 +10,9 @@ class Property < ApplicationRecord
   has_many :applications
   has_many :prospects, through: :applications
 
+  # Has-Many
+  has_many :property_images, dependent: :destroy
+
   # Belongs_to
   belongs_to :owner
 
