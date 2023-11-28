@@ -13,6 +13,11 @@ class Prospect < ApplicationRecord
   has_many :properties, through: :applications
 
   #====================
+  # Uploaders
+  #====================
+  mount_uploader :image, ProspectImageUploader
+
+  #====================
   # Scopes
   #====================
   default_scope { order(created_at: :desc) }
