@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_27_212504) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_28_002020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -73,6 +73,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_212504) do
     t.index ["rent_price"], name: "index_properties_on_rent_price"
   end
 
+  create_table "property_images", force: :cascade do |t|
+    t.string "image"
+    t.bigint "property_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_property_images_on_property_id"
+  end
+
   create_table "prospects", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -95,4 +103,5 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_27_212504) do
   add_foreign_key "applications", "properties"
   add_foreign_key "applications", "prospects"
   add_foreign_key "properties", "owners"
+  add_foreign_key "property_images", "properties"
 end

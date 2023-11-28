@@ -19,7 +19,13 @@ Rails.application.routes.draw do
       # Owners > Properties
       resources :owners do
         member do
-          resources :properties
+          # /owners/:id/properties
+          resources :properties do
+            member do
+              # /owners/:id/properties/:id/property_images
+              resources :property_images
+            end
+          end
         end
       end
 
