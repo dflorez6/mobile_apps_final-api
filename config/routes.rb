@@ -11,9 +11,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     # v1
     namespace :v1 do
-      resources :countries, only: [:index, :show] # Restricting routes
+      # Authentication
+      get 'owners/login', to: 'authentications#login_owner'
+      get 'prospects/login', to: 'authentications#login_prospect'
 
-      resources :applications
+      # Prospects
       resources :prospects
 
       # Owners > Properties
@@ -28,6 +30,12 @@ Rails.application.routes.draw do
           end
         end
       end
+
+      # Prospect Applications
+      resources :applications
+
+      # Lookup
+      resources :countries, only: [:index, :show] # Restricting routes
 
     end
 
