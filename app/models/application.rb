@@ -16,3 +16,5 @@ class Application < ApplicationRecord
   #====================
   default_scope { order(created_at: :desc) }
 end
+
+# TODO: AddMigration application_message:text
