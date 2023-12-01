@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     # v1
     namespace :v1 do
       # Authentication
-      get 'owners/login', to: 'authentications#login_owner'
-      get 'prospects/login', to: 'authentications#login_prospect'
+      post 'owners/login', to: 'authentications#login_owner'
+      post 'prospects/login', to: 'authentications#login_prospect'
 
       # Prospects
       resources :prospects
