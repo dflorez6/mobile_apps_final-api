@@ -31,10 +31,15 @@ module Api
       # PATCH/PUT /applications/1
       # PATCH/PUT /applications/1.json
       def update
-        if @application.update(application_params)
+        # Checks that Application can be updated && that the correct status code is passed for processing
+        if @application.update(application_params) && (params[:status] == "approved" || params[:status] == "rejected")
           render json: @application, status: 200
         else
-          render json: @application.errors, status: :unprocessable_entity
+          if params[:status] != "approved" || params[:status] != "rejected"
+            render json: { message: "Incorrect status." }, status: :unprocessable_entity
+          else
+            render json: @application.errors, status: :unprocessable_entity
+          end
         end
       end
 
@@ -57,7 +62,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def application_params
-        params.require(:application).permit(:property_id, :prospect_id, :application_date)
+        params.require(:application).permit(:property_id, :prospect_id, :application_date, :status)
       end
 
     end

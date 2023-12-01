@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_28_002020) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_01_200511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_002020) do
     t.datetime "application_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status", default: "pending"
     t.index ["property_id"], name: "index_applications_on_property_id"
     t.index ["prospect_id"], name: "index_applications_on_prospect_id"
   end
