@@ -235,4 +235,24 @@ Country.create([
 =end
 
 
-#
+# TODO: Uncomment on final deployment
+PropertyType.create([
+                      { name: "apartment" },
+                      { name: "bungalow" },
+                      { name: "cabin" },
+                      { name: "condominium" },
+                      { name: "cottage" },
+                      { name: "detached" },
+                      { name: "duplex" },
+                      { name: "mansion" },
+                      { name: "penthouse" },
+                      { name: "quadplex" },
+                      { name: "ranch" },
+                      { name: "semi-detached" },
+                      { name: "single-family" },
+                      { name: "tiny" },
+                      { name: "townhouse" },
+                      { name: "triplex" },
+                      { name: "split-level" },
+                      { name: "villa" }
+                    ])
