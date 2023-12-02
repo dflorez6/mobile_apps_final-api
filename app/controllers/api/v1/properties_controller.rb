@@ -57,7 +57,12 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def property_params
-        params.require(:property).permit(:street, :city, :postal_code, :province, :country, :latitude, :longitude, :is_apartment, :building_name, :tower_number, :unit_number, :rent_price, :owner_id)
+        params.require(:property).permit(
+          :street, :city, :postal_code, :province, :country, :latitude, :longitude, :is_apartment, :building_name,
+          :tower_number, :unit_number, :rent_price, :agreement, :size, :bathrooms, :bedrooms, :move_in, :back_yard,
+          :front_yard,
+          :owner_id, :property_type_id
+        )
       end
 
     end

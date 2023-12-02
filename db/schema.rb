@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_01_200511) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_02_044156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -69,8 +69,17 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_200511) do
     t.bigint "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "property_type_id", null: false
+    t.string "agreement"
+    t.integer "size"
+    t.integer "bathrooms"
+    t.integer "bedrooms"
+    t.datetime "move_in"
+    t.boolean "back_yard"
+    t.boolean "front_yard"
     t.index ["latitude", "longitude"], name: "index_properties_on_latitude_and_longitude"
     t.index ["owner_id"], name: "index_properties_on_owner_id"
+    t.index ["property_type_id"], name: "index_properties_on_property_type_id"
     t.index ["rent_price"], name: "index_properties_on_rent_price"
   end
 
@@ -80,6 +89,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_200511) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_property_images_on_property_id"
+  end
+
+  create_table "property_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "prospects", force: :cascade do |t|
@@ -104,5 +119,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_01_200511) do
   add_foreign_key "applications", "properties"
   add_foreign_key "applications", "prospects"
   add_foreign_key "properties", "owners"
+  add_foreign_key "properties", "property_types"
   add_foreign_key "property_images", "properties"
 end

@@ -2,6 +2,7 @@ class Property < ApplicationRecord
   #====================
   # Validations
   #====================
+  validates_presence_of :owner_id, :property_type_id
 
   #====================
   # Associations
@@ -15,6 +16,7 @@ class Property < ApplicationRecord
 
   # Belongs_to
   belongs_to :owner
+  belongs_to :property_type
 
   #====================
   # Scopes
@@ -22,7 +24,7 @@ class Property < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   #====================
-  # Method
+  # Methods
   #====================
   # Custom method to concatenate values to display full address
   def full_address
