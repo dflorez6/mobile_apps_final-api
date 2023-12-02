@@ -6,14 +6,14 @@ module Api
       # GET /properties
       # GET /properties.json
       def index
-        @properties = Property.all
-        render json: @properties, status: 200
+        @properties = Property.includes(:property_images).all
+        render json: @properties.to_json(include: :property_images), status: 200
       end
 
       # GET /properties/1
       # GET /properties/1.json
       def show
-        render json: @property, status: 200
+        render json: @property.to_json(include: :property_images), status: 200
       end
 
       # POST /properties
