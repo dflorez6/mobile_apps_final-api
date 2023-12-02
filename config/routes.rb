@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       post 'owners/login', to: 'authentications#login_owner'
       post 'prospects/login', to: 'authentications#login_prospect'
 
+      # Home Properties
+      get 'properties', to: 'properties#index' # Used in the mobile app Home
+
       # Prospects
       resources :prospects
 
@@ -22,7 +25,7 @@ Rails.application.routes.draw do
       resources :owners do
         member do
           # /owners/:id/properties
-          resources :properties do
+          resources :properties, except: [:index] do
             member do
               # /owners/:id/properties/:id/property_images
               resources :property_images
