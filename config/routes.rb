@@ -35,8 +35,8 @@ Rails.application.routes.draw do
       resources :applications
 
       # Lookup
-      resources :property_types
-      resources :countries, only: [:index, :show] # Restricting routes
+      resources :property_types, only: [:index, :show] # Restricting routes
+      resources :countries, only: [:index, :show]
 
     end
 

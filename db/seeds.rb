@@ -236,6 +236,7 @@ Country.create([
 
 
 # TODO: Uncomment on final deployment
+=begin
 PropertyType.create([
                       { name: "apartment" },
                       { name: "bungalow" },
@@ -256,3 +257,4 @@ PropertyType.create([
                       { name: "split-level" },
                       { name: "villa" }
                     ])
+=end
