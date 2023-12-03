@@ -6,7 +6,16 @@ module Api
       # GET /properties
       # GET /properties.json
       def index
-        @properties = Property.includes(:property_images).all
+        # Checks if there are Query Params in the URL
+        # Returns an array of Properties that match the filter OR all properties if there are no Query Params
+        if request.query_parameters.present?
+          @properties = Property.where(nil) # creates an anonymous scope
+          @properties = @properties.filter_by_params(request.query_parameters)
+          # named scope that accepts a dynamic list of URL query params to return a collection that meets the criteria
+        else
+          @properties = Property.includes(:property_images).all
+        end
+
         render json: @properties.to_json(include: :property_images), status: 200
       end
 
@@ -49,6 +58,13 @@ module Api
         end
       end
 
+      #====================
+      # Custom Actions
+      #====================
+
+      #====================
+      # Private
+      #====================
       private
       # Use callbacks to share common setup or constraints between actions.
       def set_property
