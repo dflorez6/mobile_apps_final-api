@@ -57,7 +57,10 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def owner_params
-        params.require(:owner).permit(:first_name, :last_name, :name, :email, :password, :password_confirmation, :dob, :phone, :street, :city, :province, :postal_code, :is_business, :country, :website_url, :image)
+        params.require(:owner).permit(
+          :first_name, :last_name, :name, :email, :password, :password_confirmation, :dob, :phone, :street, :city,
+          :province, :postal_code, :is_business, :country, :website_url, :image, :user_role
+        )
       end
 
     end
