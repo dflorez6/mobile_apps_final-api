@@ -15,22 +15,17 @@ Rails.application.routes.draw do
       post 'owners/login', to: 'authentications#login_owner'
       post 'prospects/login', to: 'authentications#login_prospect'
 
-      # Home Properties
-      get 'properties', to: 'properties#index' # Used in the mobile app Home
-
       # Prospects
       resources :prospects
 
-      # Owners > Properties
-      resources :owners do
+      # Owners
+      resources :owners # TODO: to display Owners properties I will use a collection with properties asociated to the Owner
+
+      # Properties
+      resources :properties do
         member do
-          # /owners/:id/properties
-          resources :properties, except: [:index] do
-            member do
-              # /owners/:id/properties/:id/property_images
-              resources :property_images
-            end
-          end
+          # /owners/:id/properties/:id/property_images
+          resources :property_images
         end
       end
 
