@@ -13,7 +13,7 @@ module Api
           @properties = @properties.filter_by_params(request.query_parameters)
           # named scope that accepts a dynamic list of URL query params to return a collection that meets the criteria
         else
-          @properties = Property.includes(:property_images).all
+          @properties = Property.all
         end
 
         render json: @properties.to_json(include: :property_images), status: 200
@@ -22,7 +22,7 @@ module Api
       # GET /properties/1
       # GET /properties/1.json
       def show
-        render json: @property.to_json(include: :property_images), status: 200
+        render json: @property.to_json(include: { owner: {}, property_images: {} }), status: 200
       end
 
       # POST /properties
