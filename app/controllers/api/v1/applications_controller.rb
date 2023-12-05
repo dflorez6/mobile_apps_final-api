@@ -7,7 +7,7 @@ module Api
       # GET /applications.json
       def index
         @applications = Application.all
-        render json: @applications, status: 200
+        render json: @applications.to_json(include: { prospect: {}, property: { include: { property_images: {} } } }), status: 200
       end
 
       # GET /applications/1
