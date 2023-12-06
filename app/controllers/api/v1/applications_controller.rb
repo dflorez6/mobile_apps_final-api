@@ -13,7 +13,9 @@ module Api
           @applications = Application.all
         end
 
-        render json: @applications.to_json(include: { prospect: {}, property: { include: { property_images: {} } } }), status: 200
+        # TODO: Uncomment this in case prospect information needs to be returned
+        # render json: @applications.to_json(include: { prospect: {}, property: { include: { property_images: {} } } }), status: 200
+        render json: @applications.to_json(include: { property: { include: { property_images: {} } } }), status: 200
       end
 
       # GET /applications/1
