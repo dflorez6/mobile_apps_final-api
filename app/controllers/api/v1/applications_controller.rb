@@ -6,7 +6,13 @@ module Api
       # GET /applications
       # GET /applications.json
       def index
-        @applications = Application.all
+        if request.query_parameters.present?
+          @applications = Application.where(nil) # creates an anonymous scope
+          @applications = @applications.filter_by_params(request.query_parameters)
+        else
+          @applications = Application.all
+        end
+
         render json: @applications.to_json(include: { prospect: {}, property: { include: { property_images: {} } } }), status: 200
       end
 

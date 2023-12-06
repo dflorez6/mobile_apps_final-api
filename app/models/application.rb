@@ -15,6 +15,20 @@ class Application < ApplicationRecord
   # Scopes
   #====================
   default_scope { order(created_at: :desc) }
-end
 
-# TODO: AddMigration application_message:text
+  # Named scopes
+  scope :filter_by_params, -> (params) {
+    scope = self.all
+
+    if params[:prospect_id].present?
+      # Returns the collection of Applications where params[:prospect_id] == prospect_id
+      scope = scope.where(prospect_id: params[:prospect_id])
+    elsif params[:owner_id].present?
+      # Returns the collection of Applications with properties belonging to a specific Owner
+      scope = scope.joins(property: :owner).where(owners: { id: params[:owner_id] })
+    end
+
+    scope
+  }
+
+end
