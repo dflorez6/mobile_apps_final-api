@@ -38,7 +38,7 @@ module Api
       # PATCH/PUT /applications/1.json
       def update
         # Checks that Application can be updated && that the correct status code is passed for processing
-        if @application.update(application_params) && (params[:status] == "approved" || params[:status] == "rejected")
+        if @application.update(application_params) && (params[:status] == "approved" || params[:status] == "rejected" || params[:status] == "pending")
           render json: @application, status: 200
         else
           if params[:status] != "approved" || params[:status] != "rejected"
