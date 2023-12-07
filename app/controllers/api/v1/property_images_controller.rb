@@ -18,15 +18,34 @@ module Api
 
       # POST /property_images
       # POST /property_images.json
+      # Multiple create/upload
       def create
-        @property_image = PropertyImage.new(property_image_params)
+        images_params = params[:property_images] # Assuming you send an array of images with the key 'property_images'
+        @property_images = []
 
-        if @property_image.save
-          render json: @property_image, status: 200
-        else
-          render json: @property_image.errors, status: :unprocessable_entity
+        images_params.each do |image_param|
+          @property_image = PropertyImage.new(image: image_param, property_id: params[:property_id])
+
+          if @property_image.save
+            @property_images << @property_image
+          else
+            render json: { errors: @property_image.errors }, status: :unprocessable_entity
+            return
+          end
         end
+
+        render json: @property_images, status: :created
       end
+      # This method creates and uploads only 1 image
+      # def create
+      #   @property_image = PropertyImage.new(property_image_params)
+      #
+      #   if @property_image.save
+      #     render json: @property_image, status: 200
+      #   else
+      #     render json: @property_image.errors, status: :unprocessable_entity
+      #   end
+      # end
 
       # PATCH/PUT /property_images/1
       # PATCH/PUT /property_images/1.json
