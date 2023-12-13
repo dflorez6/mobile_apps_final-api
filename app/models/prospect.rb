@@ -11,7 +11,7 @@ class Prospect < ApplicationRecord
   # Associations
   #====================
   # Many-to-Many
-  has_many :applications
+  has_many :applications, dependent: :destroy
   has_many :properties, through: :applications
 
   #====================
