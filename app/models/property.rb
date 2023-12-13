@@ -8,7 +8,7 @@ class Property < ApplicationRecord
   # Associations
   #====================
   # Many-to-Many
-  has_many :applications
+  has_many :applications, dependent: :destroy
   has_many :prospects, through: :applications
 
   # Has-Many
